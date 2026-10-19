@@ -9,7 +9,6 @@ META_FILE = "db_meta.json"
 
 
 def print_help():
-    """Prints the help message for the current mode."""
 
     print("\n***Процесс работы с таблицей***")
     print("Функции:")
