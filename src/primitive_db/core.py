@@ -1,6 +1,13 @@
 VALID_TYPES = ['int', 'bool', 'str']
 
 
+def matches(record, where_clause):
+    for key, value in where_clause.items():
+        if record.get(key) != value:
+            return False
+    return True
+
+
 def create_table(metadata, table_name, columns):
     if table_name in metadata:
         print('Ошибка! Такая таблица уже есть!')
@@ -50,5 +57,29 @@ def insert(metadata, table_name, values, table_data):
     return table_data
 
 
+def select(table_data, where_clause=None):
+    if where_clause is None:
+        return table_data
+
+    result = []
+    for record in table_data:
+        if matches(record, where_clause):
+            result.append(record)
+    return result
+
+
+def update(table_data, set_clause, where_clause):
+    for record in table_data:
+        if matches(record, where_clause):
+            record.update(set_clause)
+    return table_data
+
+
+def delete(table_data, where_clause):
+    result = []
+    for record in table_data:
+        if not(matches(record, where_clause)):
+            result.append(record)
+    return result
 
 
