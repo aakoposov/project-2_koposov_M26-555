@@ -1,7 +1,6 @@
 import json
 import os
 
-
 DATA_DIR = "data"
 
 def load_metadata(filepath):
